@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {background-color:darkgrey}
+
+#Logo {float:left;}
+
+#Icon {float:right;}
+
+#Home {clear:both; font-family:Arial; border-bottom:solid black 2px;border-top:solid black 2px; padding:10px;}
+#Home a {margin:10px;}
+#Home a:hover {color:red;}
+#Home a{color:black; text-decoration-line:none;}
+#Home a:visited {color:black;}
+
+#Welcome {border-bottom:solid black 1px; color:orange; font-family:Arial; margin:20px;}
+
+#header {font-family:Arial; float:left; width:632px;}
+#header img {border:solid black 1px;padding:10px; width:250px; margin:20px;}
+
+#right h3 {color:orange}
+#right {font-family:Arial; float:right; width:250px;}
+
+#description img {border:solid black 1px;padding:5px; width:130px; margin:5px;}
+
+#footer {clear:both; padding:0px 330px; margin:10px; border-top:solid black 1px}
+
+#kotak {width:900px; background-color:white; margin:0px auto;}
+#kotak2 {width:1000px; background-color:white; margin:0px auto;}
+
