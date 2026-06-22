@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us — Hallway Wear</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Clean Core Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fafafa;
+            color: #1a1a1a;
+            font-family: 'Inter', sans-serif;
+            padding: 20px;
+        }
+
+        .site-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        /* --- Header Navigation --- */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+            color: #111111;
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555555;
+            font-weight: 500;
+            font-size: 14px;
+            margin-left: 25px;
+        }
+
+        .nav-links a.active {
+            color: #111111;
+            font-weight: 700;
+        }
+
+        /* --- Editorial Layout Split Table --- */
+        .about-layout-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        .text-column {
+            width: 50%;
+            padding-right: 60px;
+            vertical-align: top;
+        }
+
+        .visual-column {
+            width: 50%;
+            vertical-align: middle;
+            text-align: right;
+        }
+
+        /* --- Content Styling --- */
+        .section-tag {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888888;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .headline {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            line-height: 1.2;
+            color: #111111;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .headline em {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .description-paragraph {
+            color: #555555;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* --- Modern Info Grid Block --- */
+        .meta-stats-grid {
+            margin-top: 40px;
+            border-top: 1px solid #eeeeee;
+            padding-top: 30px;
+        }
+
+        .stat-item {
+            display: inline-block;
+            width: 45%;
+            margin-right: 5%;
+            vertical-align: top;
+            margin-bottom: 20px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #999999;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: #111111;
+            font-weight: 600;
+        }
+
+        /* --- Styled Asset Collage Holder --- */
+        .image-collage-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .main-showcase-img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+            display: block;
+        }
+
+        .floating-badge {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            background-color: #111111;
+            color: #ffffff;
+            padding: 20px 25px;
+            border-radius: 14px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            text-align: left;
+        }
+
+        .floating-badge h5 {
+            font-size: 20px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        .floating-badge p {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #aaaaaa;
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #1c1c1c;
+            color: #ffffff;
+            border-radius: 16px;
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+        .footer-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .footer-contact {
+            color: #a5a5a5;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-contact strong {
+            color: #ffffff;
+        }
+
+        .footer-contact a {
+            color: #a5a5a5;
+            text-decoration: none;
+        }
+
+        .social-links img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="site-wrapper">
+
+        <table class="header-table">
+            <tr>
+                <td><a href="home page.html" class="logo">Hallway Wear</a></td>
+                <td align="right" class="nav-links">
+                    <a href="home page.html">Home</a>
+                    <a href="about.html" class="active">About</a>
+                    <a href="Shoes page.html">Product</a>
+                    <a href="Service.html">Service</a>
+                    <a href="Contact.html">Contact</a>
+                </td>
+            </tr>
+        </table>
+
+        <table class="about-layout-table">
+            <tr>
+                <td class="text-column">
+                    <span class="section-tag">Our Legacy</span>
+                    <h2 class="headline">Crafting comfort for the next generation of <em>leaders</em>.</h2>
+                    
+                    <p class="description-paragraph">
+                        At Hallway Wear, we design school attire and footwear built meticulously around the dynamic school day. We believe premium everyday essentials empower students to transition confidently from modern classrooms directly into playgrounds without compromises.
+                    </p>
+                    
+                    <p class="description-paragraph">
+                        Combining smart, durable fabrics with sophisticated timeless tailored silhouettes, our collections are carefully structured to offer long-lasting aesthetic durability throughout the entire academic year.
+                    </p>
+
+                    <div class="meta-stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">Origin Location</span>
+                            <span class="stat-value">Johor, Malaysia</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Material Target</span>
+                            <span class="stat-value">Premium Breathable Cotton</span>
+                        </div>
+                    </div>
+                </td>
+
+                <td class="visual-column">
+                    <div class="image-collage-wrapper">
+                        <img src="img/stokin.jpeg" alt="Hallway Wear Craftsmanship" class="main-showcase-img">
+                        
+                        <div class="floating-badge">
+                            <h5>100% Quality</h5>
+                            <p>Guaranteed Comfort</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <footer>
+            <table class="footer-table">
+                <tr>
+                    <td width="33%" valign="middle" class="footer-logo">Hallway Wear</td>
+                    <td width="33%" valign="top" class="footer-contact">
+                        <strong>Contact Us</strong><br>
+                        Kulai, Johor, Malaysia<br>
+                        <a href="tel:+60123456789">+60 12-345 6789</a><br>
+                        <a href="mailto:hello@hallwaywear.my">hello@hallwaywear.my</a>
+                    </td>
+                    <td width="33%" align="right" valign="middle" class="social-links">
+                        <a href="#"><img src="img/whatsapp.jpg" alt="WhatsApp"></a>
+                        <a href="#"><img src="img/tiktok.jpg" alt="TikTok"></a>
+                        <a href="#"><img src="img/youtube.jpg" alt="YouTube"></a>
+                        <a href="#"><img src="img/facebook.jpg" alt="Facebook"></a>
+                    </td>
+                </tr>
+            </table>
+        </footer>
+
+    </div>
+
+</body>
+</html>

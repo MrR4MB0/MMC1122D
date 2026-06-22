@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hallway Wear — Premium Malaysia School Uniforms</title>
+    <!-- Premium Editorial & Modern Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Reset & Premium Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fafafa;
+            color: #1a1a1a;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Global Structural Wrapper --- */
+        .site-wrapper {
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        /* --- Header / Navigation --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 35px 20px;
+            background-color: transparent;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.5px;
+            color: #111111;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #555555;
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #111111;
+        }
+
+        /* --- Hero Banner Section --- */
+        .hero-outer-container {
+            background-color: #ededed; 
+            width: 100%;
+            border-radius: 24px; 
+            overflow: hidden;
+        }
+
+        .hero-flex-layout {
+            display: flex;
+            width: 100%;
+            height: 440px; 
+        }
+
+        .hero-card-left {
+            background-color: #1c1c1c; 
+            width: 50%;                
+            height: 100%;
+            padding-left: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 20px;
+            border-radius: 0 0 100px 0; 
+        }
+
+        .hero-card-left h1 {
+            color: #ffffff;
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        .hero-space-right {
+            width: 50%; 
+            height: 100%;
+            background-image: linear-gradient(rgba(0,0,0,0.04), rgba(0,0,0,0.04)), url('https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=600');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background-color: #00d2ff; 
+            color: #ffffff;
+            text-decoration: none;
+            padding: 16px 48px;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 30px; 
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0, 210, 255, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(0, 210, 255, 0.45);
+        }
+
+        /* --- Products Section --- */
+        .products-section {
+            padding: 100px 20px 60px 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 60px;
+            font-family: 'Playfair Display', serif;
+            color: #111111;
+        }
+
+        .products-container {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .row-top, .row-bottom {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            width: 100%;
+        }
+
+        .product-card {
+            background-color: #ffffff;
+            border-radius: 24px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            width: 300px; 
+            box-shadow: 0 10px 35px rgba(0,0,0,0.03);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .product-image-placeholder {
+            background-color: #f3f3f3; 
+            height: 240px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            padding: 0;        
+        }
+
+        .product-image-placeholder.generic-style::after {
+            content: 'MALAYSIA SCHOOL EDITION';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #b5b5b5;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            width: 80%;
+            text-align: center;
+        }
+
+        .product-details {
+            padding: 25px;
+            background-color: #ffffff; 
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #111111;
+        }
+
+        .product-btn {
+            display: inline-block;
+            background-color: #111111; 
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 0;
+            width: 140px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 13px;
+            cursor: pointer;
+            text-align: center;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .product-btn:hover {
+            background-color: #00d2ff;
+            color: #ffffff;
+        }
+
+        /* --- Premium Footer Module --- */
+        footer {
+            background-color: #1c1c1c;
+            padding: 60px 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            align-items: center;
+            border-radius: 24px 24px 0 0;
+            margin-top: 60px;
+        }
+
+        .footer-logo {
+            color: #ffffff;
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .footer-contact {
+            color: #a5a5a5;
+            font-size: 14px;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .footer-contact strong {
+            color: #ffffff;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .footer-contact a {
+            color: #a5a5a5;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact a:hover {
+            color: #00d2ff;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            justify-content: flex-end;
+        }
+
+        .social-icon {
+            width: 44px;
+            height: 44px;
+            background-color: rgba(255,255,255,0.06);
+            border-radius: 50%; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; 
+            transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            display: block;
+        }
+
+        .social-icon:hover {
+            background-color: #ffffff;
+            transform: translateY(-3px);
+            opacity: 0.9;
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 900px) {
+            footer {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+                padding: 50px 30px;
+            }
+            .footer-contact {
+                align-items: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 25px;
+            }
+            .hero-flex-layout {
+                flex-direction: column;
+                height: auto;
+            }
+            .hero-card-left {
+                width: 100%;
+                border-radius: 0 0 40px 40px;
+                padding: 60px 30px;
+                align-items: center;
+                text-align: center;
+            }
+            .hero-space-right {
+                display: none;
+            }
+            .row-top, .row-bottom {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="site-wrapper">
+
+        <!-- Header Navigation Area -->
+        <header>
+            <div class="logo">Hallway Wear</div>
+            <nav>
+                <ul>
+                    <li><a href="home page.html" class="active">Home</a></li>
+                    <li><a href="About.html">About</a></li>
+                    <li><a href="Shoes page.html">Product</a></li>
+                    <li><a href="Service.html">Service</a></li>
+                    <li><a href="Contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Hero Presentation Module -->
+        <section class="hero-outer-container">
+            <div class="hero-flex-layout">
+                <div class="hero-card-left">
+                    <h1>Premium Quality.<br>Kembali Ke Sekolah.</h1>
+                    <a href="Shoes page.html" class="hero-btn">Shop Collection</a>
+                </div>
+                <div class="hero-space-right"></div>
+            </div>
+        </section>
+
+        <!-- What's New Curated Products Section -->
+        <section class="products-section">
+            <h2 class="section-title">School Wear Essentials</h2>
+            
+            <div class="products-container">
+                <!-- Top Row: 3 Core Items -->
+                <div class="row-top">
+                    <div class="product-card">
+                        <div class="product-image-placeholder">
+                            <img src="img/bata.png" alt="Premium School Shoes">
+                        </div>
+                        <div class="product-details">
+                            <span class="product-title">Premium School Shoes</span>
+                            <a href="Shoes page.html" class="product-btn">View Options</a>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image-placeholder">
+						<img src="C:\Users\asus\OneDrive\Desktop\MMC1122D\baju sekolah\img\seluar.WEBP"></div>
+                        <div class="product-details">
+                            <span class="product-title">Secondary Uniform Pants</span>
+                            <a href="seluar.html" class="product-btn">View Options</a>
+                        </div>
+                    </div>
+                    
+                    <!-- LINKED TO TIES PAGE -->
+                    <div class="product-card">
+                        <div class="product-image-placeholder">
+						<img src="C:\Users\asus\OneDrive\Desktop\MMC1122D\baju sekolah\img\tali.jpg"></div>
+                        <div class="product-details">
+                            <span class="product-title">Official School Neck Tie</span>
+                            <a href="index.html" class="product-btn">View Options</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Row: 2 Secondary Items Centered -->
+                <div class="row-bottom">
+                    <div class="product-card">
+                        <div class="product-image-placeholder">
+						<img src="C:\Users\asus\OneDrive\Desktop\MMC1122D\baju sekolah\img\baju.jpg">
+						</div>
+                        <div class="product-details">
+                            <span class="product-title">Smart White Shirts</span>
+                            <a href="shirt.html" class="product-btn">View Options</a>
+                        </div>
+                    </div>
+                    
+                    <!-- LINKED TO SOCKS PAGE -->
+                    <div class="product-card">
+                        <div class="product-image-placeholder">
+						<img src="C:\Users\asus\OneDrive\Desktop\MMC1122D\baju sekolah\img\stokin.jpeg"></div>
+                        <div class="product-details">
+                            <span class="product-title">Comfort Cotton Stockings</span>
+                            <a href="socks.html" class="product-btn">View Options</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Premium Footer Block -->
+        <footer>
+            <div class="footer-logo">Hallway Wear</div>
+            
+            <div class="footer-contact">
+                <strong>Contact Us</strong>
+                <span>Kulai, Johor, Malaysia</span>
+                <a href="tel:+60123456789">+60 12-345 6789</a>
+                <a href="mailto:hello@hallwaywear.my">hello@hallwaywear.my</a>
+            </div>
+            
+            <div class="social-links">
+                <a href="#" class="social-icon" aria-label="WhatsApp"><img src="img/whatsapp.jpg" alt="WhatsApp"></a>
+                <a href="#" class="social-icon" aria-label="TikTok"><img src="img/tiktok.jpg" alt="TikTok"></a>
+                <a href="#" class="social-icon" aria-label="YouTube"><img src="img/youtube.jpg" alt="YouTube"></a>
+                <a href="#" class="social-icon" aria-label="Facebook"><img src="img/facebook.jpg" alt="Facebook"></a>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>

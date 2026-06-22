@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services — Hallway Wear</title>
+    <!-- Premium Editorial & Modern Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Reset & Premium Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fafafa;
+            color: #1a1a1a;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Global Structural Wrapper --- */
+        .site-wrapper {
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        /* --- Header / Navigation --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 35px 20px;
+            background-color: transparent;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.5px;
+            color: #111111;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #555555;
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #111111;
+        }
+
+        /* --- Services Introduction Section --- */
+        .services-hero {
+            text-align: center;
+            padding: 60px 20px 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .services-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #111111;
+        }
+
+        .services-hero p {
+            color: #555555;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* --- Grid Services --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            padding: 0 20px;
+        }
+
+        .service-card {
+            background-color: #ffffff;
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .service-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #00d2ff;
+        }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #111111;
+        }
+
+        .service-card p {
+            color: #666666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* --- Testimonials & Reviews Section --- */
+        .reviews-section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+            color: #111111;
+        }
+
+        .reviews-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .review-card {
+            background-color: #ffffff;
+            border-radius: 24px;
+            padding: 30px;
+            width: 350px;
+            text-align: left;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .stars {
+            color: #ffcc00;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .review-text {
+            color: #555555;
+            font-size: 14px;
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .reviewer-name {
+            font-weight: 600;
+            font-size: 15px;
+            color: #111111;
+        }
+
+        /* --- Review Action Button --- */
+        .action-btn-container {
+            margin-top: 40px;
+        }
+
+        .review-trigger-btn {
+            display: inline-block;
+            background-color: #111111;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 35px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            border: none;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .review-trigger-btn:hover {
+            background-color: #00d2ff;
+            transform: translateY(-2px);
+        }
+
+        /* --- Star Rating Modal / Pop-up --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .rating-modal {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .rating-modal {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #999999;
+        }
+
+        .rating-modal h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #111111;
+        }
+
+        .rating-modal p {
+            color: #666666;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        /* Interactive Stars */
+        .star-rating-input {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-direction: row-reverse; /* For CSS hover flow control */
+            margin-bottom: 25px;
+        }
+
+        .star-rating-input input {
+            display: none;
+        }
+
+        .star-rating-input label {
+            font-size: 35px;
+            color: #dddddd;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .star-rating-input input:checked ~ label,
+        .star-rating-input label:hover,
+        .star-rating-input label:hover ~ label {
+            color: #ffcc00;
+        }
+
+        .modal-textarea {
+            width: 100%;
+            height: 100px;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            resize: none;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        .modal-textarea:focus {
+            border-color: #00d2ff;
+        }
+
+        .submit-review-btn {
+            background-color: #111111;
+            color: #ffffff;
+            border: none;
+            padding: 14px 0;
+            width: 100%;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-review-btn:hover {
+            background-color: #00d2ff;
+        }
+
+        /* --- Interactive Contact Us Section --- */
+        .contact-section {
+            background-color: #ededed;
+            border-radius: 24px;
+            padding: 60px 40px;
+            margin: 40px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .contact-info-left {
+            max-width: 50%;
+        }
+
+        .contact-info-left h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: #111111;
+            margin-bottom: 15px;
+        }
+
+        .contact-info-left p {
+            color: #555555;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .contact-details-right {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .contact-item span {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888888;
+            font-weight: 600;
+        }
+
+        .contact-item a, .contact-item p {
+            font-size: 16px;
+            color: #111111;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #00d2ff;
+        }
+
+        /* --- Premium Footer Module --- */
+        footer {
+            background-color: #1c1c1c;
+            padding: 60px 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            align-items: center;
+            border-radius: 24px 24px 0 0;
+            margin-top: 60px;
+        }
+
+        .footer-logo {
+            color: #ffffff;
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .footer-contact {
+            color: #a5a5a5;
+            font-size: 14px;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .footer-contact strong {
+            color: #ffffff;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .footer-contact a {
+            color: #a5a5a5;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact a:hover {
+            color: #00d2ff;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            justify-content: flex-end;
+        }
+
+        .social-icon {
+            width: 44px;
+            height: 44px;
+            background-color: rgba(255,255,255,0.06);
+            border-radius: 50%; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; 
+            transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            display: block;
+        }
+
+        .social-icon:hover {
+            background-color: #ffffff;
+            transform: translateY(-3px);
+            opacity: 0.9;
+        }
+
+        /* --- Responsive Styles --- */
+        @media (max-width: 900px) {
+            .contact-section {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 20px;
+            }
+            .contact-info-left {
+                max-width: 100%;
+            }
+            footer {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+                padding: 50px 30px;
+            }
+            .footer-contact {
+                align-items: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="site-wrapper">
+
+        <!-- Header Navigation Area -->
+        <header>
+            <div class="logo">Hallway Wear</div>
+            <nav>
+                <ul>
+                    <li><a href="home page.html">Home</a></li>
+                    <li><a href="About.html">About</a></li>
+                    <li><a href="Shoes page.html">Product</a></li>
+                    <li><a href="services.html" class="active">Service</a></li>
+                    <li><a href="Contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Services Hero Segment -->
+        <section class="services-hero">
+            <h1>Our Premium Services</h1>
+            <p>At Hallway Wear, we go beyond offering premium school uniforms; we are committed to delivering the finest experiences and services to ensure complete comfort for your children.</p>
+        </section>
+
+        <!-- Services Presentation Grid -->
+        <section class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">✂</div>
+                <h3>Custom Tailoring</h3>
+                <p>Customize the fit of shirts or trousers to perfectly suit your child's measurements, keeping them looking sharp and feeling comfortable all day long.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">📦</div>
+                <h3>Bulk School Orders</h3>
+                <p>Dedicated supply services for official uniforms, custom ties, and full school gear batches tailored for prefect boards, school clubs, or institutional needs.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🔄</div>
+                <h3>Easy Size Exchange</h3>
+                <p>Worried about selecting the wrong fit? Shop stress-free with our straightforward, hassle-free size replacement policy valid within 7 days of purchase.</p>
+            </div>
+        </section>
+
+        <!-- Feedback & Review List Module -->
+        <section class="reviews-section">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <p style="color: #666666; max-width:600px; margin: 0 auto;">Take a look at honest feedback shared by parents who appreciate the quality of our premium fabrics.</p>
+            
+            <div class="reviews-container">
+                <!-- Review Card 1 -->
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"The uniform material is incredibly soft and cool. The official necktie looks remarkably premium compared to ordinary school shops. Totally satisfied!"</p>
+                    <p class="reviewer-name">— Puan Azlina, Johor</p>
+                </div>
+
+                <!-- Review Card 2 -->
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Fast shipping service and pristine packaging. The Bata school shoes we ordered fit my son flawlessly. Will absolutely be ordering again."</p>
+                    <p class="reviewer-name">— Encik Khairul, Kulai</p>
+                </div>
+            </div>
+
+            <!-- Write Review Trigger Button -->
+            <div class="action-btn-container">
+                <button class="review-trigger-btn" id="openModalBtn">Write A Review</button>
+            </div>
+        </section>
+
+        <!-- Contact Us Section containing phone, email & location -->
+
+          
+        <!-- Rate Stars Pop-up Modal Overlay Area -->
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="rating-modal">
+                <button class="close-modal" id="closeModalBtn">&times;</button>
+                <h3>Leave a Review</h3>
+                <p>How was your experience with Hallway Wear? We'd love to hear your thoughts.</p>
+                
+                <form id="reviewForm" onsubmit="handleReviewSubmit(event)">
+                    <!-- Dynamic Interactive Stars Input -->
+                    <div class="star-rating-input">
+                        <input type="radio" id="star5" name="rating" value="5" required><label for="star5">★</label>
+                        <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                        <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                        <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                        <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+                    </div>
+
+                    <textarea class="modal-textarea" placeholder="Share your detailed thoughts or suggestions here..." required></textarea>
+                    
+                    <button type="submit" class="submit-review-btn">Submit Review</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Premium Footer Block -->
+        <footer>
+            <div class="footer-logo">Hallway Wear</div>
+            
+            <div class="footer-contact">
+                <strong>Contact Us</strong>
+                <span>Kulai, Johor, Malaysia</span>
+                <a href="tel:+60123456789">+60 12-345 6789</a>
+                <a href="mailto:hello@hallwaywear.my">hello@hallwaywear.my</a>
+            </div>
+            
+            <div class="social-links">
+                <a href="#" class="social-icon" aria-label="WhatsApp"><img src="C:\Users\asus\OneDrive\Desktop\MMC1122D\baju sekolah\img\whatsapp.png" alt="WhatsApp"></a>
+                <a href="#" class="social-icon" aria-label="TikTok"><img src="C:\Users\asus\OneDrive\Desktop\MMC1122D\baju sekolah\img\tiktok.png" alt="TikTok"></a>
+                <a href="#" class="social-icon" aria-label="YouTube"><img src="C:\Users\asus\OneDrive\Desktop\MMC1122D\baju sekolah\img\youtube.png" alt="YouTube"></a>
+                <a href="#" class="social-icon" aria-label="Facebook"><img src="C:\Users\asus\OneDrive\Desktop\MMC1122D\baju sekolah\img\facebook.png" alt="Facebook"></a>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript For Modal Controls -->
+    <script>
+        const openModalBtn = document.getElementById('openModalBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modalOverlay = document.getElementById('modalOverlay');
+
+        // Open Modal Function
+        openModalBtn.addEventListener('click', () => {
+            modalOverlay.classList.add('active');
+        });
+
+        // Close Modal Function
+        closeModalBtn.addEventListener('click', () => {
+            modalOverlay.classList.remove('active');
+            document.getElementById('reviewForm').reset();
+        });
+
+        // Close Modal when clicking outside the content block
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('active');
+                document.getElementById('reviewForm').reset();
+            }
+        });
+
+        // Form Submission Logic
+        function handleReviewSubmit(event) {
+            event.preventDefault();
+            alert('Thank you so much for your review and star rating evaluation!');
+            modalOverlay.classList.remove('active');
+            document.getElementById('reviewForm').reset();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hallway Wear Collection</title>
+    <style>
+        /* --- Reset & Core Styling --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 30px 20px;
+            flex: 1;
+        }
+
+        /* --- LOFI TRADITIONAL HEADER --- */
+        .site-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            margin-top: 15px;
+            background: transparent; 
+            padding: 0; 
+            border: none;
+            box-shadow: none;
+        }
+
+        .logo-area img {
+            height: 120px; 
+            width: auto;
+            object-fit: contain;
+            display: block;
+            margin-left: -15px; 
+            mix-blend-mode: multiply; 
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px; 
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #718096; 
+            font-size: 1.15rem;
+            font-weight: 500;
+            transition: color 0.2s ease-in-out;
+        }
+
+        .nav-links a:hover {
+            color: #000000; 
+        }
+
+        /* --- Page Titles --- */
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #111;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        /* --- Section 1: The 6-Product Grid Catalog --- */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e1e4e8;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 250px;
+            background-color: #eaeaea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #e1e4e8;
+        }
+        
+        .card-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .card-details {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+            color: #111;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .card-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0056b3;
+        }
+
+        .card-btn {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        /* --- Section 2: Detailed View & Checkout Modal --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 900px;
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .detail-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 10px;
+        }
+
+        .detail-image-box {
+            width: 100%;
+            height: 350px;
+            background-color: #eaeaea;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ddd;
+        }
+        
+        .detail-image-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .detail-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .detail-title {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .detail-price {
+            font-size: 1.5rem;
+            color: #0056b3;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .detail-description {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .option-group {
+            margin-bottom: 15px;
+        }
+
+        .option-label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .option-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .opt-btn {
+            padding: 8px 16px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .opt-btn.active {
+            border-color: #0056b3;
+            background-color: #0056b3;
+            color: white;
+        }
+
+        .action-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .qty-box {
+            width: 70px;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .checkout-btn {
+            flex-grow: 1;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .checkout-btn:hover {
+            background-color: #218838;
+        }
+
+        /* --- DESIGN SYSTEM FOOTER --- */
+        .site-footer-wrapper {
+            width: 100%;
+            padding: 0 20px; 
+            margin-top: auto;
+        }
+
+        .site-footer {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 45px 50px;
+            max-width: 1160px; 
+            margin: 40px auto 0 auto;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            font-family: 'Georgia', serif;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-contact {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #b3b3b3;
+        }
+
+        .footer-contact h4 {
+            color: #ffffff;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-circle {
+            width: 44px;
+            height: 44px;
+            background-color: #262626;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .social-circle svg {
+            width: 22px;
+            height: 22px;
+            fill: #8c63b8; 
+            transition: fill 0.2s;
+        }
+
+        .social-circle:hover {
+            background-color: #333333;
+            transform: scale(1.08);
+        }
+
+        .social-circle:hover svg {
+            fill: #a67cd2; 
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .detail-layout {
+                grid-template-columns: 1fr;
+            }
+            .site-header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-socials {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <header class="site-header">
+        <div class="logo-area">
+            <img src="img/logo.webp" alt="Hallway Wear Logo">
+        </div>
+        <nav class="nav-links">
+            <a href="home page.html">Home</a>
+            <a href="About.html">About</a>
+            <a href="Shoes page.html">Product</a>
+            <a href="Service.html">Service</a>
+            <a href="Contact.html">Contact</a>
+        </nav>
+    </header>
+    
+    <h1 class="page-title">The Hallway Wear Collection</h1>
+    <p class="page-subtitle">Premium school shirts designed for comfort, style, and everyday classroom wear.</p>
+
+    <div class="catalog-grid">
+        
+        <div class="product-card" onclick="openProductDetail('photo_6129485456513634317_x.jpg', 'Junior Gingham Polo', 24.99, 'Short-sleeved blue uniform shirt featuring a checkered gingham collar and trim.')">
+            <div class="card-image"><img src="img/shirt6.jpg" alt="Junior Gingham Polo"></div>
+            <div class="card-details">
+                <h3 class="card-title">Junior Gingham Polo</h3>
+                <p class="card-description">Short-sleeved blue uniform shirt featuring a checkered gingham collar and trim.</p>
+                <div class="card-footer">
+                    <span class="card-price">RM 24.99</span>
+                    <button class="card-btn">View & Checkout</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card" onclick="openProductDetail('photo_6129485456513634310_x.jpg', 'Standard Green Button-Down', 19.99, 'Classic mint green long-sleeved formal school uniform shirt.')">
+            <div class="card-image"><img src="img/shirt5.jpg" alt="Standard Green Button-Down"></div>
+            <div class="card-details">
+                <h3 class="card-title">Standard Green Button-Down</h3>
+                <p class="card-description">Classic mint green long-sleeved formal school uniform shirt.</p>
+                <div class="card-footer">
+                    <span class="card-price">RM 19.99</span>
+                    <button class="card-btn">View & Checkout</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card" onclick="openProductDetail('photo_6129485456513634303_x.jpg', 'Formal Yellow Button-Down', 29.99, 'Pastel yellow long-sleeved formal shirt with a neat collar design.')">
+            <div class="card-image"><img src="img/shirt4.jpg" alt="Formal Yellow Button-Down"></div>
+            <div class="card-details">
+                <h3 class="card-title">Formal Yellow Button-Down</h3>
+                <p class="card-description">Pastel yellow long-sleeved formal shirt with a neat collar design.</p>
+                <div class="card-footer">
+                    <span class="card-price">RM 29.99</span>
+                    <button class="card-btn">View & Checkout</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card" onclick="openProductDetail('photo_6129485456513634299_y.jpg', 'Student Blue Uniform Shirt', 15.99, 'Standard-issue royal blue formal shirt required for academy uniform, as modeled.')">
+            <div class="card-image"><img src="img/shirt3.jpg" alt="Student Blue Uniform Shirt"></div>
+            <div class="card-details">
+                <h3 class="card-title">Student Blue Uniform Shirt</h3>
+                <p class="card-description">Standard-issue royal blue formal shirt required for academy uniform, as modeled.</p>
+                <div class="card-footer">
+                    <span class="card-price">RM 15.99</span>
+                    <button class="card-btn">View & Checkout</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card" onclick="openProductDetail('photo_6129485456513634294_x.jpg', 'Lavender Long-Sleeve', 27.99, 'Formal lavender purple long-sleeved uniform shirt for a crisp look.')">
+            <div class="card-image"><img src="img/shirt2.jpg" alt="Lavender Long-Sleeve"></div>
+            <div class="card-details">
+                <h3 class="card-title">Lavender Long-Sleeve</h3>
+                <p class="card-description">Formal lavender purple long-sleeved uniform shirt for a crisp look.</p>
+                <div class="card-footer">
+                    <span class="card-price">RM 27.99</span>
+                    <button class="card-btn">View & Checkout</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card" onclick="openProductDetail('photo_6129485456513634288_y.jpg', 'Classic Senior White Shirt', 21.99, 'Traditional white formal uniform shirt, as modeled with a Hallway Wear navy tie.')">
+            <div class="card-image"><img src="img/shirt1.jpg" alt="Classic Senior White Shirt"></div>
+            <div class="card-details">
+                <h3 class="card-title">Classic Senior White Shirt</h3>
+                <p class="card-description">Traditional white formal uniform shirt, as modeled with a Hallway Wear navy tie.</p>
+                <div class="card-footer">
+                    <span class="card-price">RM 21.99</span>
+                    <button class="card-btn">View & Checkout</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal-overlay" id="productModal">
+    <div class="modal-content">
+        <button class="close-modal" onclick="closeProductDetail()">×</button>
+        
+        <div class="detail-layout">
+            <div class="detail-image-box">
+                <img src="" id="modalImg" alt="Product Preview">
+            </div>
+
+            <div class="detail-info">
+                <h2 class="detail-title" id="modalTitle">Product Name</h2>
+                <div class="detail-price" id="modalPrice">RM 0.00</div>
+                <p class="detail-description" id="modalDescription">Product description text.</p>
+
+                <div class="option-group">
+                    <span class="option-label">Size:</span>
+                    <div class="option-buttons">
+                        <button class="opt-btn" onclick="selectOption(this, 'size')">S</button>
+                        <button class="opt-btn active" onclick="selectOption(this, 'size')">M</button>
+                        <button class="opt-btn" onclick="selectOption(this, 'size')">L</button>
+                        <button class="opt-btn" onclick="selectOption(this, 'size')">XL</button>
+                    </div>
+                </div>
+
+                <div class="action-row">
+                    <input type="number" class="qty-box" id="purchaseQty" value="1" min="1" max="10">
+                    <button class="checkout-btn" onclick="processCheckout()">PROCEED TO CHECKOUT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="site-footer-wrapper">
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                Hallway Wear
+            </div>
+            
+            <div class="footer-contact">
+                <h4>CONTACT US</h4>
+                <p>Kulai, Johor, Malaysia</p>
+                <p>+60 12-345 6789</p>
+                <p>hello@hallwaywear.my</p>
+            </div>
+            
+            <div class="footer-socials">
+                <a href="https://www.whatsapp.com" target="_blank" class="social-circle" title="WhatsApp">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12.012 0C5.398 0 .056 5.343.056 11.958c0 2.113.547 4.178 1.59 5.977L0 24l6.198-1.625c1.78.969 3.774 1.48 5.809 1.481h.005c6.613 0 11.955-5.342 11.958-11.957A11.9 11.9 0 0 0 20.485 3.5 11.9 11.9 0 0 0 12.012 0zm0 21.916c-1.794 0-3.555-.482-5.093-1.392l-.365-.217-3.785.992.1-1.01.914-2.45-.238-.38a9.92 9.92 0 0 1-1.52-5.253c0-5.474 4.453-9.928 9.932-9.928a9.87 9.87 0 0 1 7.025 2.912 9.87 9.87 0 0 1 2.91 7.024c-.003 5.475-4.457 9.932-9.93 9.932zm5.438-7.42c-.298-.15-1.763-.87-2.035-.97-.272-.1-.47-.15-.667.15-.197.3-.765.97-.938 1.17-.173.2-.346.22-.644.07-1.12-.49-2.055-.95-2.852-1.64-.616-.53-1.002-1.22-1.122-1.43-.12-.2-.013-.31.086-.41.09-.09.197-.23.296-.34.1-.12.13-.2.197-.33.065-.14.032-.26-.016-.36-.05-.1-.47-1.13-.644-1.55-.17-.4-.355-.35-.49-.35h-.418c-.148 0-.395.06-.602.29-.207.23-.79.77-.79 1.88 0 1.11.808 2.18.92 2.33.113.15 1.59 2.43 3.854 3.4 1.124.48 1.815.615 2.436.685.7.08 1.344.04 1.85-.034.564-.085 1.764-.72 2.014-1.417.25-.7.25-1.3.175-1.42-.074-.12-.27-.19-.567-.34z"/>
+                    </svg>
+                </a>
+                <a href="https://www.tiktok.com" target="_blank" class="social-circle" title="TikTok">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.04 1.64 4.16.92.98 2.19 1.59 3.52 1.77v3.96c-1.74-.06-3.41-.67-4.75-1.78-.2-.17-.4-.35-.58-.54v7.77c.04 2.57-1.13 5.09-3.23 6.58-2.29 1.67-5.4 1.95-7.94.75-2.61-1.17-4.44-3.92-4.63-6.79-.24-3.32 1.75-6.57 4.88-7.75 1.34-.53 2.8-.66 4.2-.38V12c-1.17-.37-2.48-.11-3.44.62-.97.71-1.51 1.89-1.42 3.1.06 1.42.99 2.7 2.33 3.18 1.26.47 2.75.18 3.73-.72.63-.56.97-1.38.96-2.22V.02h.17z"/>
+                    </svg>
+                </a>
+                <a href="https://www.youtube.com" target="_blank" class="social-circle" title="YouTube">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                </a>
+                <a href="https://www.facebook.com" target="_blank" class="social-circle" title="Facebook">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    let activeProductPrice = 0;
+    let activeProductName = "";
+    let chosenSize = "M";
+
+    function openProductDetail(imgSrc, name, price, description) {
+        activeProductName = name;
+        activeProductPrice = price;
+        
+        document.getElementById('modalTitle').innerText = name;
+        document.getElementById('modalPrice').innerText = `RM ${price.toFixed(2)}`;
+        document.getElementById('modalDescription').innerText = description;
+        document.getElementById('modalImg').src = imgSrc; 
+        document.getElementById('modalImg').alt = name; 
+
+        document.getElementById('productModal').style.display = 'flex';
+    }
+
+    function closeProductDetail() {
+        document.getElementById('productModal').style.display = 'none';
+        document.getElementById('purchaseQty').value = 1;
+    }
+
+    function selectOption(buttonElement, type) {
+        const row = buttonElement.parentElement;
+        const buttons = row.querySelectorAll('.opt-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        buttonElement.classList.add('active');
+
+        if (type === 'size') {
+            chosenSize = buttonElement.innerText;
+        }
+    }
+
+    function processCheckout() {
+        const qtyInput = document.getElementById('purchaseQty');
+        const finalQty = parseInt(qtyInput.value);
+
+        if (finalQty < 1 || isNaN(finalQty)) {
+            alert("Please pick a valid number of shirts before checking out.");
+            return;
+        }
+
+        const overallCost = activeProductPrice * finalQty;
+
+        alert(
+            `🛒 --- CHECKOUT RECEIPT GENERATED ---\n\n` +
+            `Item Ordered: ${activeProductName}\n` +
+            `Size Selected: ${chosenSize}\n` +
+            `Quantity: ${finalQty} units\n` +
+            `------------------------------------\n` +
+            `TOTAL AMOUNT DUE: RM ${overallCost.toFixed(2)}\n\n` +
+            `Redirecting to payment forms portal backend...`
+        );
+        
+        closeProductDetail();
+    }
+</script>
+
+</body>
+</html>

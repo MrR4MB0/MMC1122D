@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout - Hallway Wear</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="C:\Users\asus\OneDrive\Desktop\MMC1122D\baju sekolah\css\checkout.css">
+
+</head>
+<body>
+
+<div class="checkout-container">
+
+    <div class="checkout-left">
+
+        <h1>Checkout</h1>
+
+        <h3>Contact Information</h3>
+
+        <input type="text" id="name" placeholder="Full Name">
+
+        <input type="email" id="email" placeholder="Email Address">
+
+        <input type="text" id="phone" placeholder="Phone Number">
+
+        <h3>Shipping Address</h3>
+
+        <input type="text" id="address" placeholder="Address">
+
+        <input type="text" id="state" placeholder="State">
+
+        <input type="text" id="postcode" placeholder="Postcode">
+
+    </div>
+
+    <div class="checkout-right">
+
+        <div class="order-summary">
+
+            <h2>Order Summary</h2>
+
+            <div class="summary-row">
+            <span id="product-name"></span>
+            <span id="product-price"></span>
+            </div>
+
+            <hr>
+
+            <div class="summary-row total">
+            <span>Total</span>
+            <span id="total-price"></span>
+            </div>
+
+        </div>
+
+        <div class="payment-box">
+
+            <h2>DuitNow Payment</h2>
+
+            <img src="C:\Users\asus\OneDrive\Desktop\MMC1122D\baju sekolah\img\qr chewan.jpeg" alt="DuitNow QR">
+
+            <p>
+                Please complete payment before
+                submitting your order.
+            </p>
+
+            <button onclick="submitOrder()">
+                I HAVE PAID
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+
+const product =
+    params.get("product") || "Unknown Product";
+
+const price =
+    params.get("price") || "0";
+
+document.getElementById("product-name").innerText =
+    product;
+
+document.getElementById("product-price").innerText =
+    "MYR " + price;
+
+document.getElementById("total-price").innerText =
+    "MYR " + price;
+
+function submitOrder(){
+
+    let name =
+        document.getElementById("name").value;
+
+    let email =
+        document.getElementById("email").value;
+
+    let phone =
+        document.getElementById("phone").value;
+
+    let address =
+        document.getElementById("address").value;
+
+    let state =
+        document.getElementById("state").value;
+
+    let postcode =
+        document.getElementById("postcode").value;
+
+    let message =
+        "Hello Hallway Wear,%0A%0A" +
+        "I have completed payment.%0A%0A" +
+        "Name: " + name + "%0A" +
+        "Email: " + email + "%0A" +
+        "Phone: " + phone + "%0A" +
+        "Address: " + address + "%0A" +
+        "State: " + state + "%0A" +
+        "Postcode: " + postcode + "%0A%0A" +
+        "Product: " + product + "%0A" +
+        "Price: MYR " + price;
+
+    window.open(
+        "https://wa.me/601161758840?text=" + message,
+        "_blank"
+    );
+}
+
+</script>
+
+</body>
+</html>

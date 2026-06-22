@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Shoes Collection — Hallway Wear</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Clean Core Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fafafa;
+            color: #1a1a1a;
+            font-family: 'Inter', sans-serif;
+            padding: 20px;
+        }
+
+        .site-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        /* --- Header --- */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+            color: #111111;
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555555;
+            font-weight: 500;
+            font-size: 14px;
+            margin-left: 25px;
+        }
+
+        .nav-links a.active {
+            color: #111111;
+            font-weight: 700;
+        }
+
+        /* --- Banner --- */
+        .category-banner {
+            padding: 30px 0;
+            border-top: 1px solid #eeeeee;
+            border-bottom: 1px solid #eeeeee;
+            margin-bottom: 40px;
+        }
+
+        .breadcrumbs {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888888;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumbs a {
+            color: #888888;
+            text-decoration: none;
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: #111111;
+            margin-bottom: 10px;
+        }
+
+        .category-description {
+            color: #666666;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* --- Catalog Table Structure --- */
+        .catalog-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 20px;
+        }
+
+        .product-card {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 16px;
+            width: 25%;
+            vertical-align: top;
+            overflow: hidden;
+        }
+
+        .img-box {
+            background-color: #f3f3f3;
+            height: 220px;
+            text-align: center;
+            position: relative;
+        }
+
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: #1c1c1c;
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        .product-details {
+            padding: 20px;
+        }
+
+        .product-meta {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #888888;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #111111;
+            margin-bottom: 12px;
+            min-height: 44px;
+        }
+
+        .product-price {
+            font-weight: 700;
+            font-size: 16px;
+            color: #111111;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .product-btn {
+            background-color: #111111;
+            color: #ffffff;
+            border: none;
+            padding: 12px 0;
+            width: 100%;
+            border-radius: 12px;
+            font-weight: 500;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .product-btn:hover {
+            background-color: #00d2ff;
+        }
+
+        /* --- Cart Pop-up Modal Window --- */
+        .cart-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 2000;
+        }
+
+        .cart-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .cart-modal {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 440px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .cart-modal-overlay.active .cart-modal {
+            transform: translateY(0);
+        }
+
+        .close-modal-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #999999;
+        }
+
+        .modal-status-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal-status-title::before {
+            content: "✓";
+            display: inline-flex;
+            background-color: #e6f9ff;
+            color: #00d2ff;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .modal-product-summary {
+            display: flex;
+            gap: 15px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .modal-product-img {
+            width: 70px;
+            height: 70px;
+            background-color: #eaeaea;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .modal-info-box h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            color: #111111;
+            margin-bottom: 4px;
+        }
+
+        .modal-info-box p {
+            font-size: 14px;
+            font-weight: 700;
+            color: #555555;
+        }
+
+        .size-section-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #777777;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .size-options-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .size-btn {
+            border: 1px solid #dddddd;
+            background-color: #ffffff;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .size-btn:hover {
+            border-color: #111111;
+        }
+
+        .size-btn.selected {
+            background-color: #111111;
+            color: #ffffff;
+            border-color: #111111;
+        }
+
+        .checkout-action-btn {
+            background-color: #111111;
+            color: #ffffff;
+            border: none;
+            padding: 14px 0;
+            width: 100%;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .checkout-action-btn:hover {
+            background-color: #00d2ff;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #1c1c1c;
+            color: #ffffff;
+            border-radius: 16px;
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+        .footer-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .footer-contact {
+            color: #a5a5a5;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-contact strong {
+            color: #ffffff;
+        }
+
+        .footer-contact a {
+            color: #a5a5a5;
+            text-decoration: none;
+        }
+
+        .social-links img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="site-wrapper">
+
+        <table class="header-table">
+            <tr>
+                <td><a href="home page.html" class="logo">Hallway Wear</a></td>
+                <td align="right" class="nav-links">
+                    <a href="home page.html">Home</a>
+                    <a href="About.html">About</a>
+                    <a href="Shoes page.html" class="active">Product</a>
+                    <a href="Service.html">Service</a>
+                    <a href="Contact.html">Contact</a>
+                </td>
+            </tr>
+        </table>
+
+        <div class="category-banner">
+            <div class="breadcrumbs"><a href="home page.html">Home</a> / Products / <a href="Socks page.html" style="color:#111; font-weight:500;">Socks Collection</a></div>
+            <h1 class="category-title">School Shoes Collection</h1>
+            <p class="category-description">Explore premium, high-durability school footwear built beautifully for ultimate daily comfort and performance throughout the dynamic academic year.</p>
+        </div>
+
+        <table class="catalog-table">
+            <tr>
+                <td class="product-card">
+                    <div class="img-box">
+                        <span class="badge">Bestseller</span>
+                        <img src="img/bata.png" alt="Bata" id="img-prod-1">
+                    </div>
+                    <div class="product-details">
+                        <span class="product-meta">Canvas Edition</span>
+                        <div class="product-title" id="title-prod-1">Bata Premium Classic</div>
+                        <span class="product-price" id="price-prod-1">RM 49.90</span>
+                        <button class="product-btn" onclick="openCartModal('prod-1')">Select Size</button>
+                    </div>
+                </td>
+
+                <td class="product-card">
+                    <div class="img-box">
+                        <img src="img/NewStar.jpg" alt="NewStar" id="img-prod-2">
+                    </div>
+                    <div class="product-details">
+                        <span class="product-meta">Easy Slip-On</span>
+                        <div class="product-title" id="title-prod-2">Smart Comfort Slip-On</div>
+                        <span class="product-price" id="price-prod-2">RM 55.00</span>
+                        <button class="product-btn" onclick="openCartModal('prod-2')">Select Size</button>
+                    </div>
+                </td>
+
+                <td class="product-card">
+                    <div class="img-box">
+                        <span class="badge">New</span>
+                        <img src="img/JAZZ.png" alt="JAZZ" id="img-prod-3">
+                    </div>
+                    <div class="product-details">
+                        <span class="product-meta">Lace-Up Edition</span>
+                        <div class="product-title" id="title-prod-3">Heavy Duty Athletic Sport</div>
+                        <span class="product-price" id="price-prod-3">RM 69.90</span>
+                        <button class="product-btn" onclick="openCartModal('prod-3')">Select Size</button>
+                    </div>
+                </td>
+
+                <td class="product-card">
+                    <div class="img-box">
+                        <img src="img/BUM.jpeg" alt="BUM" id="img-prod-4">
+                    </div>
+                    <div class="product-details">
+                        <span class="product-meta">Breathable Mesh</span>
+                        <div class="product-title" id="title-prod-4">Lightweight Breathable Air</div>
+                        <span class="product-price" id="price-prod-4">RM 59.00</span>
+                        <button class="product-btn" onclick="openCartModal('prod-4')">Select Size</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Added to Cart Pop-up Modal Structure -->
+        <div class="cart-modal-overlay" id="cartModalOverlay">
+            <div class="cart-modal">
+                <button class="close-modal-btn" onclick="closeCartModal()">&times;</button>
+                <div class="modal-status-title">Added to Bag Successfully</div>
+                
+                <div class="modal-product-summary">
+                    <img src="" alt="Product Preview" class="modal-product-img" id="modalProductImg">
+                    <div class="modal-info-box">
+                        <h4 id="modalProductTitle">Product Title</h4>
+                        <p id="modalProductPrice">RM 00.00</p>
+                    </div>
+                </div>
+
+                <span class="size-section-title">Select Size (UK)</span>
+                <div class="size-options-container">
+                    <button class="size-btn" onclick="selectSize(this)">5</button>
+                    <button class="size-btn" onclick="selectSize(this)">6</button>
+                    <button class="size-btn selected" onclick="selectSize(this)">7</button>
+                    <button class="size-btn" onclick="selectSize(this)">8</button>
+                    <button class="size-btn" onclick="selectSize(this)">9</button>
+                </div>
+
+                <button class="checkout-action-btn" onclick="confirmCartAction()">View Cart & Checkout</button>
+            </div>
+        </div>
+
+        <footer>
+            <table class="footer-table">
+                <tr>
+                    <td width="33%" valign="middle" class="footer-logo">Hallway Wear</td>
+                    <td width="33%" valign="top" class="footer-contact">
+                        <strong>Contact Us</strong><br>
+                        Kulai, Johor, Malaysia<br>
+                        <a href="tel:+60123456789">+60 12-345 6789</a><br>
+                        <a href="mailto:hello@hallwaywear.my">hello@hallwaywear.my</a>
+                    </td>
+                    <td width="33%" align="right" valign="middle" class="social-links">
+                        <a href="#"><img src="img/whatsapp.jpg" alt="WhatsApp"></a>
+                        <a href="#"><img src="img/tiktok.jpg" alt="TikTok"></a>
+                        <a href="#"><img src="img/youtube.jpg" alt="YouTube"></a>
+                        <a href="#"><img src="img/facebook.jpg" alt="Facebook"></a>
+                    </td>
+                </tr>
+            </table>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript For Modal Cart Controls -->
+    <script>
+        const cartOverlay = document.getElementById('cartModalOverlay');
+        const modalImg = document.getElementById('modalProductImg');
+        const modalTitle = document.getElementById('modalProductTitle');
+        const modalPrice = document.getElementById('modalProductPrice');
+        let currentSelectedSize = "7"; // Default selected fallback value
+        let purePriceValue = "0"; // To store numerical format string clean of 'RM'
+
+        // Open Modal and dynamically load card attributes[cite: 16]
+        function openCartModal(productId) {
+            const productTitleText = document.getElementById(`title-${productId}`).innerText;
+            const productPriceText = document.getElementById(`price-${productId}`).innerText;
+            const productImgSrc = document.getElementById(`img-${productId}`).src;
+
+            modalTitle.innerText = productTitleText;
+            modalPrice.innerText = productPriceText;
+            modalImg.src = productImgSrc;
+
+            // Strip away "RM " text to pass a clean decimal to checkout query
+            purePriceValue = productPriceText.replace("RM ", "").trim();
+
+            cartOverlay.classList.add('active');
+        }
+
+        // Close Modal Controls
+        function closeCartModal() {
+            cartOverlay.classList.remove('active');
+        }
+
+        // Close Modal by clicking outer background space
+        cartOverlay.addEventListener('click', (e) => {
+            if (e.target === cartOverlay) {
+                closeCartModal();
+            }
+        });
+
+        // Size Toggle Selector Option
+        function selectSize(element) {
+            const sizeButtons = document.querySelectorAll('.size-btn');
+            sizeButtons.forEach(btn => btn.classList.remove('selected'));
+            element.classList.add('selected');
+            currentSelectedSize = element.innerText;
+        }
+
+        // Redirects smoothly to checkout page passing safe URI values[cite: 17]
+        function confirmCartAction() {
+            const compiledProductName = `${modalTitle.innerText} (Size: ${currentSelectedSize})`;
+            
+            // Generate clean target redirect query url matches checkout expectations
+            window.location.href = `checkout.html?product=${encodeURIComponent(compiledProductName)}&price=${encodeURIComponent(purePriceValue)}`;
+        }
+    </script>
+</body>
+</html>
